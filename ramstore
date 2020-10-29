@@ -15,12 +15,10 @@
 # Should always be in ram disk.
 /etc
 
-# FH default; don't know why
-/root
+# FH default; don't know why. We don't need it
+# /root
 
 # See below !!!!
-#
-# ubuntu20 new: comes from cloud init
 /var/lib/cloud
 /var/lib/dbus
 /var/lib/private
@@ -51,7 +49,10 @@
 # XNEXT but on the other side, this will ruin something inside devpts !
 #       something which we'll manually fix inside the delay-mountro startup script
 # cfr https://stackoverflow.com/questions/27021641/how-to-fix-request-failed-on-channel-0
-/dev
+#
+# as of second and last(?) commit, it seems we DON'T need to ramstore /dev
+# /dev
+#
 
 # Necessary if the system is to be able to send mail while in embedded mode
 /var/spool

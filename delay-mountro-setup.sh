@@ -2,12 +2,13 @@
 
 
 logFn=/etc/xspectra/delay-mountro.txt
+logFn=/dev/null
 
 
 # Forced iff ramstoring /dev. Cfr ramstore
-echo "XNEXT fixing devpts...."
-/usr/bin/umount /dev/pts                  | tee -a ${logFn}
-/usr/bin/mount devpts /dev/pts -t devpts  | tee -a ${logFn}
+# echo "XNEXT fixing devpts...."
+# /usr/bin/umount /dev/pts                  | tee -a ${logFn}
+# /usr/bin/mount devpts /dev/pts -t devpts  | tee -a ${logFn}
 
 nDelay=1
 echo $(date) | tee -a ${logFn}

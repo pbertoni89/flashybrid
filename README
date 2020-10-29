@@ -51,3 +51,20 @@ I dropped them. The new version is way smaller, and hopefully more robust. It's
 actively maintained, which IMHO is much more important.
 
 Diego Iastrubni <diego.iastrubni@xorcom.com>
+
+
+# Ubuntu 20.04: few notes
+
+We provided a wrapper service, not elegant yet working. Look for delay-mountro files.
+THIS HAS TO BE INSTALLED MANUALLY
+
+It seems to work without a swap file (/swap.img) and with a fstab without UUID and proper options. Example
+
+> /dev/sda2           /    ext4  errors=remount,ro      0    1
+
+Further, we [removed](https://www.kevin-custer.com/blog/disabling-snaps-in-ubuntu-20-04/) completely the Snap system
+
+Remember to manually create the `/ram` directory!!!!!!!!!
+
+Patrizio Bertoni <pbertoni@x-next.com>
+Nevio Rebesco <nrebesco@x-next.com>
