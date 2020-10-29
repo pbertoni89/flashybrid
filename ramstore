@@ -14,24 +14,46 @@
 
 # Should always be in ram disk.
 /etc
-/var/lib/alsa
-/var/lib/asterisk
-/var/lib/discover
-/var/lib/dbus
-/var/lib/exim4
-/var/lib/op-panel
-/var/lib/logrotate
-/var/lib/mysql
-/var/log
+
+# FH default; don't know why
 /root
+
+# See below !!!!
+#
+# ubuntu20 new: comes from cloud init
+/var/lib/cloud
+/var/lib/dbus
+/var/lib/private
+/var/lib/AccountsService
+/var/lib/systemd
+/var/lib/ubuntu-release-upgrader
+/var/lib/update-notifier
+
+# Most of this space is occupied by /var/lib/snap: who cares
+
+# Wrong: dhcp and misc subdirectories will have problems
+# /var/lib
+
+# /var/lib/alsa
+# /var/lib/asterisk
+# /var/lib/discover
+# /var/lib/dbus
+# /var/lib/exim4
+# /var/lib/op-panel
+# /var/lib/logrotate
+# /var/lib/mysql
+/var/log
 
 # If you don't use devfs/udev, you will want /dev in ram, since many things
 # need to modify it when the system is running. Not needed on systems
 # running udev.
-#/dev
+#
+# XNEXT but on the other side, this will ruin something inside devpts !
+#       something which we'll manually fix inside the delay-mountro startup script
+# cfr https://stackoverflow.com/questions/27021641/how-to-fix-request-failed-on-channel-0
+/dev
 
-# Necessary if the system is to be able to send mail while in embedded
-# mode.
+# Necessary if the system is to be able to send mail while in embedded mode
 /var/spool
 /var/mail
 
@@ -39,4 +61,4 @@
 # it might be a good idea to add these subfolders here or make the whole
 # of /var/cache mirrored in tmpfs. Note that this is likely to be wasteful
 # (large amount of data to be held in tmpfs)
-#/var/cache
+/var/cache

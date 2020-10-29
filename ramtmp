@@ -21,3 +21,7 @@
 # This could go in ramstore if you prefer for its contents to persist
 # across reboots.
 /var/tmp
+
+
+# eh mi piacerebbe!
+# /var/log/journal

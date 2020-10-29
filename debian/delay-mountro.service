@@ -1,0 +1,22 @@
+
+[Unit]
+Description=Xnext Delay MountRo
+# TODO qualcosa?
+#After=network.target
+Wants=local-fs.target multi-user.target
+# After=local-fs.target
+After=local-fs.target multi-user.target
+AllowIsolate=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+
+ExecStartPre=/usr/bin/sleep 10
+ExecStart=/usr/sbin/delay-mountro-setup.sh
+ExecStop=/usr/sbin/delay-mountro-teardown.sh
+
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

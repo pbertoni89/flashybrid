@@ -18,7 +18,7 @@ RAMMOUNT=/ram
 # to the tmpfs RAM drive
 # This parameter is optional, and if you do not supply if, tmpfs will
 # occupy up to 50% of your available memory (ram+swap)
-FLASH_MAX=92m
+FLASH_MAX=512m
 
 # You may also want to edit the other files in this directory:
 # ramtmp, ramstore
