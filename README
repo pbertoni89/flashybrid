@@ -60,7 +60,9 @@ THIS HAS TO BE INSTALLED MANUALLY
 
 It seems to work without a swap file (/swap.img) and with a fstab without UUID and proper options. Example
 
-> /dev/sda2           /    ext4  errors=remount,ro      0    1
+> /dev/sda2           /    ext4  errors=remount-ro      0    1
+
+NR says the UUID part is not relevant
 
 Further, we [removed](https://www.kevin-custer.com/blog/disabling-snaps-in-ubuntu-20-04/) completely the Snap system
 
