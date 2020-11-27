@@ -63,3 +63,6 @@
 # of /var/cache mirrored in tmpfs. Note that this is likely to be wasteful
 # (large amount of data to be held in tmpfs)
 /var/cache
+
+# TODO add here everything taken with W permissions!
+/opt/xspectra/etc
