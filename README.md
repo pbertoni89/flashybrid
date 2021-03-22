@@ -1,3 +1,5 @@
+# Original README
+
 What:
 
 Flashybrid is a system to help in setting up and managing hybrid
@@ -53,7 +55,9 @@ actively maintained, which IMHO is much more important.
 Diego Iastrubni <diego.iastrubni@xorcom.com>
 
 
-# Ubuntu 20.04: few notes
+# Xnext
+
+## Ubuntu 20.04: few notes
 
 We provided a wrapper service, not elegant yet working. Look for delay-mountro files.
 THIS HAS TO BE INSTALLED MANUALLY
@@ -70,3 +74,21 @@ Remember to manually create the `/ram` directory!!!!!!!!!
 
 Patrizio Bertoni <pbertoni@x-next.com>
 Nevio Rebesco <nrebesco@x-next.com>
+
+## Istruzioni
+
+Per abilitare flashybrid in /etc/default/flashybrid
+
+    ENABLED=yes
+
+In /etc/flashybrid ci sono i file di configurazione (caricati in xspectra/doc/flashybrid/) :
+
+  * config
+  * ramstore
+  * ramtmp
+
+Per invece disabilitarlo se gia' attivo:
+ 
+  1. Montare in scrittura con `/sbin/mountrw`
+  2. modificare il suddetto ENABLED
+  3. Rimontare il lettura `/sbin/mountro`

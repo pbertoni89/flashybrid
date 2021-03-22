@@ -22,6 +22,8 @@
 # across reboots.
 /var/tmp
 
+# PB: was not archived yet used
+/dev/shm
 
 # eh mi piacerebbe!
 # /var/log/journal

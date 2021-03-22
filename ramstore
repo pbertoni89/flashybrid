@@ -17,6 +17,8 @@
 
 # FH default; don't know why. We don't need it
 # /root
+# PB on 2021/03/22 bel/flir incident: /root is used in facts!!!
+/root
 
 # See below !!!!
 /var/lib/cloud
@@ -63,3 +65,6 @@
 # of /var/cache mirrored in tmpfs. Note that this is likely to be wasteful
 # (large amount of data to be held in tmpfs)
 /var/cache
+
+# TODO add here everything taken with W permissions!
+/opt/xspectra/etc
