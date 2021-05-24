@@ -67,4 +67,4 @@
 /var/cache
 
 # TODO add here everything taken with W permissions!
-/opt/xspectra/etc
+/opt/xspectra/etc/du

@@ -81,7 +81,7 @@ Per abilitare flashybrid in /etc/default/flashybrid
 
     ENABLED=yes
 
-In /etc/flashybrid ci sono i file di configurazione (caricati in xspectra/doc/flashybrid/) :
+In /etc/flashybrid ci sono i file di configurazione (caricati qua nel nostro repo forked) :
 
   * config
   * ramstore
