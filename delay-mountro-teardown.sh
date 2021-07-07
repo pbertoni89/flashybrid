@@ -5,9 +5,10 @@
 # /usr/sbin/mountro
 
 logFn=/etc/xspectra/delay-mountro.txt
-logFn=/dev/null
+logFn=/dev/null  # PB why? Because broken? Checkout service's StandardOutput
 
-echo $(date) | tee -a ${logFn}
-echo "XNEXT delay-mountro-teardown BYE BYE" | tee -a ${logFn}
+function echo_log()  { echo -e "<XNEXT-DMRO-T> $(date) - ${*}"; }
+
+echo_log "bye bye" | tee -a ${logFn}
 
 exit 0

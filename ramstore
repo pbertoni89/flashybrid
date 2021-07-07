@@ -29,9 +29,6 @@
 /var/lib/ubuntu-release-upgrader
 /var/lib/update-notifier
 
-# PB on 2021/07/06 because of OPC-10
-/var/lib/docker
-
 # Most of this space is occupied by /var/lib/snap: who cares
 
 # Wrong: dhcp and misc subdirectories will have problems
@@ -69,5 +66,13 @@
 # (large amount of data to be held in tmpfs)
 /var/cache
 
+
+#  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
 # TODO add here everything taken with W permissions!
 /opt/xspectra/etc/du
+
+# PB on 2021/07/06 because of OPC-10
+# /var/lib/docker
+# but we moved to /mnt/data_ssd/docker because of its size
+# cfr https://www.futurefundamentals.com/how-to-move-docker-data-directory-to-another-location-on-linux/
