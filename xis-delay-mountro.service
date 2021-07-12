@@ -8,13 +8,17 @@ Wants=local-fs.target multi-user.target
 After=local-fs.target multi-user.target
 AllowIsolate=yes
 
+# Great! https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Environment=
+Environment="VAR_DMRO_ROOT=/opt/xspectra/libraries/flashybrid/"
+# Environment="VAR_DMRO_ROOT=/usr/sbin/"
+
 [Service]
 Type=oneshot
 RemainAfterExit=true
 
 ExecStartPre=/usr/bin/sleep 10
-ExecStart=/usr/sbin/delay-mountro-setup.sh
-ExecStop=/usr/sbin/delay-mountro-teardown.sh
+ExecStart=${VAR_DMRO_ROOT}delay-mountro-setup.sh
+ExecStop=${VAR_DMRO_ROOT}delay-mountro-teardown.sh
 
 StandardOutput=journal
 
