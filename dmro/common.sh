@@ -16,22 +16,22 @@ function dmro_test_write() {
     lsFn=${touchFn}
 
     dmro_echo "*  *  *  *  *  *  *  *  *  *  *  *  *"
-    ls -l ${lsFn} >> ${logFn}
+    ls -l ${lsFn} 2>&1 | tee -a ${logFn}
 
     if /usr/bin/touch ${touchFn}; then
-        dmro_echo "touch success: test failure"
-        ls -l ${lsFn} >> ${logFn}
+        dmro_echo "touch success: test FAILURE"
+        ls -l ${lsFn} 2>&1 | tee -a ${logFn}
         rv=1
     else
-        dmro_echo "touch failure: test success"
+        dmro_echo "touch failure: test SUCCESS"
         rv=0
     fi
 
     if [[ -f ${touchFn} ]]; then
         dmro_echo "removing file"
-        rm ${touchFn}
+        rm ${touchFn} 2>&1 | tee -a ${logFn}
         if [[ -f ${touchFn} ]]; then
-            dmro_echo "removing file: FAILED!!!"
+            dmro_echo "removing file: FAILURE"
         fi
     fi
 

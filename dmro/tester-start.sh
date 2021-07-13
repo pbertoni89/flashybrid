@@ -12,6 +12,7 @@ done
 scriptDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 source ${scriptDir}/common.sh
 
+dmro_echo "test_writing from tester"
 dmro_test_write
 res=${?}
 dmro_echo "tester-start returned ${res}"

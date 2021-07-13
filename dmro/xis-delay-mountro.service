@@ -1,12 +1,22 @@
+#
+# Great tutorials
+#
+# Official(?)           https://www.freedesktop.org/software/systemd/man/systemd.service.html
+# JournalCtl            https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
+# Dependencies/Order    https://fedoramagazine.org/systemd-unit-dependencies-and-order/
+# Target/Service/Socket https://unix.stackexchange.com/questions/159462/what-is-systemds-target-service-and-socket
+#
 
 [Unit]
 Description=Xnext Delay MountRo
 
-# TODO qualcosa?
 Wants=local-fs.target multi-user.target
 
 #After=network.target
 After=local-fs.target multi-user.target
+# essere dopo multi-user forse era necessario? Pero' a naso non crea una dipendenza ciclica?
+# After=local-fs.target docker.service docker.socket containerd.service
+# Before=docker.service docker.socket containerd.service
 
 AllowIsolate=yes
 
@@ -15,20 +25,24 @@ AllowIsolate=yes
 Type=oneshot
 RemainAfterExit=true
 
+# cfr `sleepExecStartPre` in start.sh
+# ExecStartPre=/usr/bin/sleep 8
+
 # Great! https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Environment=
 # FIXME env-var Environment=VAR_DMRO_ROOT=/opt/xspectra/libraries/flashybrid/
 # # Environment=VAR_DMRO_ROOT=/usr/sbin/
-
-# cfr `sleepExecStartPre` in start.sh
-# ExecStartPre=/usr/bin/sleep 8
 
 # FIXME env-var ExecStart=${VAR_DMRO_ROOT}delay-mountro-setup.sh
 # FIXME env-var ExecStop=${VAR_DMRO_ROOT}delay-mountro-teardown.sh
 ExecStart=/opt/xspectra/libraries/flashybrid/dmro/start.sh
 ExecStop=/opt/xspectra/libraries/flashybrid/dmro/stop.sh
 
-StandardOutput=journal
+# since this is oneshot, `ExecStartPost` will run only after the last `ExecStart` exited successfully
+# This is a bad hack that lets us `disable` Docker and manually start it
+# EDIT* problems, let's start it manually
+# ExecStartPost=systemctl start docker.service
 
+StandardOutput=journal
 
 [Install]
 WantedBy=multi-user.target
