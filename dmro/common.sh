@@ -7,6 +7,23 @@ function dmro_echo() {
     echo -e "<DMRO> $(date) - ${*}" | tee -a ${logFn}
 }
 
+
+#
+# COME SISTEMARE UN'INSTALLAZIONE DOVE AGGIUNGERE ECCEZIONI RAMSTORE ?
+# https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/
+#
+function dmro_test_fuser() {
+
+    dmro_echo  "listing only"
+
+    /usr/bin/fuser -v -m /     2>&1  |  grep Frc  # >> ${logFn}
+
+    # adesso ho i PID che mi interessano, prendiamone uno e chiamiamolo `myPid`
+    ls -l /proc/${myPid}/fd
+    lsof -p ${myPid}  # piu' utile
+}
+
+
 #
 # Return 0 if we CANNOT write on root filesystem (expected behaviour during boot). 1 otherwise
 #

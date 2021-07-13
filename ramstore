@@ -80,4 +80,16 @@
 # while performing `systemctl start docker`: got
 # failed to start daemon: failed to dial "/run/containerd/containerd.sock": unknown service containerd.services.namespaces.v1.Namespaces: not implemented
 # So, because of /run/docker/, /run/docker.sock, and `$(du -sh /run)` being few MBs, let's store it directly
-/run
+
+# PANIC - boot enters some loop
+# /run
+
+# But WHAT is this directory? It is actually another filesystem, a tmpfs -> MEANINGLESS to ram-store
+# https://unix.stackexchange.com/questions/13972/what-is-this-new-run-filesystem
+# /run/docker
+# /run/containerd
+# /run/docker.pid
+# /run/docker.sock
+
+# as of `lsof -p `pid`
+/var/lib/containerd
