@@ -1,14 +1,21 @@
 #!/bin/bash
 
-logFn=/etc/xspectra/delay-mountro.txt
-logFn=/dev/null  # PB why? Because broken? Checkout service's StandardOutput
 
-function echo_log()  { echo -e "<XNEXT-DMRO-T> $(date) - ${*}"; }
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	# if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+	[[ ${SOURCE} != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+
+scriptDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+source ${scriptDir}/common.sh
 
 # TODO something ?
-# echo_log "XNEXT mountro..."
 # /usr/sbin/mountro
 
-echo_log "bye bye" | tee -a ${logFn}
+dmro_echo "stop just ran"
 
 exit 0
+

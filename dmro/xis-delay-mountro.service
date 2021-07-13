@@ -19,8 +19,8 @@ RemainAfterExit=true
 # FIXME env-var Environment=VAR_DMRO_ROOT=/opt/xspectra/libraries/flashybrid/
 # # Environment=VAR_DMRO_ROOT=/usr/sbin/
 
-
-ExecStartPre=/usr/bin/sleep 8
+# cfr `sleepExecStartPre` in start.sh
+# ExecStartPre=/usr/bin/sleep 8
 
 # FIXME env-var ExecStart=${VAR_DMRO_ROOT}delay-mountro-setup.sh
 # FIXME env-var ExecStop=${VAR_DMRO_ROOT}delay-mountro-teardown.sh

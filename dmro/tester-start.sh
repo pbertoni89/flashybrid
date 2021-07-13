@@ -1,22 +1,19 @@
 #!/bin/bash
 
-logFn=/mnt/data_ssd/xis-delay-mountro-test.txt
-touchFn=/a
 
-date +%T > ${logFn}
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	# if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+	[[ ${SOURCE} != /* ]] && SOURCE="$DIR/$SOURCE"
+done
 
-ls -l $(dirname ${touchFn}) >> ${logFn}
+scriptDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+source ${scriptDir}/common.sh
 
-if /usr/bin/touch ${touchFn}; then
-	echo "touch success: test failure" >> ${logFn}
-	ls -l $(dirname ${touchFn}) >> ${logFn}
-else
-	echo "touch failure: test success" >> ${logFn}
-fi
-
-if [[ -f ${touchFn} ]]; then
-	echo "removing file" >> ${logFn}
-	rm ${touchFn}
-fi
+dmro_test_write
+res=${?}
+dmro_echo "tester-start returned ${res}"
 
 exit 0

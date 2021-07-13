@@ -18,8 +18,10 @@ RemainAfterExit=true
 
 
 
-
 # basta dormire! e invece si' che dormiamo: pare che accada troppo presto senno'
+# *Edit* Non ha molto senso come service questa cosa. Potrebbe averlo per spostarla come `sonda`
+# durante il boot e vedere via via quando e come FH si (dis)attiva. Ma alla fine l'importante non
+# e' semplicemente verificare che alla login (multi-user.target) sia attivo FH ?
 ExecStartPre=/usr/bin/sleep 20
 
 

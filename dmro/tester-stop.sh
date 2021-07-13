@@ -1,7 +1,19 @@
 #!/bin/bash
 
-logFn=/mnt/data_ssd/xis-delay-mountro-test.txt
 
-echo "stopping" >> ${logFn}
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	# if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+	[[ ${SOURCE} != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+
+scriptDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+source ${scriptDir}/common.sh
+
+
+
+dmro_echo "tester-stop just ran"
 
 exit 0
